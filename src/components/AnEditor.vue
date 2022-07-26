@@ -1,21 +1,24 @@
 <template>
-  <button v-on:click="iAmClicked">You clicked me {{ count }} times.</button>
+  <input type="text" v-model="value" @input="DoStuff()">
 </template>
 
 
 <script setup>
-    import { defineProps, ref } from 'vue';
+    import { defineProps, ref, watch } from 'vue';
 
     const props = defineProps({
         rowIndex: { type: Number },
         model: { type: Object },
         close: { type: Function },
-        save: { type: Function }
-    })
+        save: { type: Function },
+        data: { type: Object },
+        prop: { type: String },
+        column: { type: Object }
+    });
 
-    const count = ref(0);
+    const value = ref(props.data[props.rowIndex][props.prop]);
 
-    const iAmClicked = (e) => {
-        return count.value++;
+    const DoStuff = () => {
+        console.log("Toasties");
     }
 </script>
